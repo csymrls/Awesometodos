@@ -2,7 +2,7 @@
 const { MongoClient } = require('mongodb');
 
 const uri = "mongodb://localhost:27017"; // replace with your MongoDB URI if different
-const dbName = "Awesometodos_v2_1"; // replace with your database name
+const dbName = "awesome-todos"; // replace with your database name
 
 let db; // to hold the connected database
 
