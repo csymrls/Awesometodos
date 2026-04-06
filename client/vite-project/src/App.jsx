@@ -16,7 +16,6 @@ export default function App() {
   }, []);
 
   const handleStatusChange = async (id, currentStatus) => {
-    // Optimistically update the UI
     setTodos(
       todos.map((todo) =>
         todo._id === id ? { ...todo, status: !currentStatus } : todo
@@ -24,7 +23,6 @@ export default function App() {
     );
 
     try {
-      // Make a PUT request to update the todo's status in the backend
       const res = await fetch(`/api/todos/${id}`, {
         method: "PUT",
         headers: {
@@ -43,9 +41,6 @@ export default function App() {
         console.error("Failed to update todo status in the backend");
         // Optionally show an error message to the user
       }
-
-      // Optionally refresh the todos from the backend to ensure data consistency
-      // getTodos();
     } catch (error) {
       // If there's an error during the fetch, revert the UI change
       setTodos(
@@ -54,7 +49,6 @@ export default function App() {
         )
       );
       console.error("Error updating todo status:", error);
-      // Optionally show an error message to the user
     }
   };
 
@@ -73,8 +67,8 @@ export default function App() {
 
       if (res.ok) {
         const addedTodo = await res.json();
-        setTodos([...todos, addedTodo]); // Add the new todo to the UI
-        setNewTodo(""); // Clear the input field
+        setTodos([...todos, addedTodo]);
+        setNewTodo("");
       } else {
         console.error("Failed to add todo to the backend");
         // Optionally show an error message to the user
